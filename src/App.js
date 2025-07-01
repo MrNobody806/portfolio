@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Skills from "./components/Skills";
+import Projects from "./components/Projects";
+import Contact from "./components/Contact";
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        darkMode ? "bg-gray-900 text-gray-100" : "bg-gray-50 text-gray-900"
+      }`}
+    >
+      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+
+      <main className="container mx-auto px-4 py-8">
+        <Hero darkMode={darkMode} />
+        <About darkMode={darkMode} />
+        <Skills darkMode={darkMode} />
+        <Projects darkMode={darkMode} />
+        <Contact darkMode={darkMode} />
+      </main>
+
+      <footer
+        className={`py-6 text-center ${
+          darkMode ? "bg-gray-800" : "bg-gray-200"
+        }`}
+      >
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          &copy; {new Date().getFullYear()} Manuhe Wolde. All rights reserved.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      </footer>
     </div>
   );
 }
