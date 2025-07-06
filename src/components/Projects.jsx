@@ -3,29 +3,41 @@ const Projects = ({ darkMode }) => {
   const projects = [
     {
       id: 1,
-      title: "E-commerce Website",
+      title: "MaidFinder Platform",
       description:
-        "A fully functional e-commerce platform with payment integration.",
-      tags: ["React", "Node.js", "MongoDB"],
+        "A trusted online platform connecting users with professional, verified maids for hassle-free home cleaning services.",
+      tags: [
+        "Nuxt.js",
+        "Node.js",
+        "tailwindcss",
+        "Laravel",
+        "Payment Integration",
+        "Background Checks",
+      ],
+      img: "./images/maid.jpg",
     },
     {
       id: 2,
-      title: "Portfolio Website",
+      title: "Reunite Us Platform",
       description:
-        "A responsive portfolio website for a creative professional.",
-      tags: ["HTML5", "CSS3", "JavaScript"],
+        "A compassionate, secure platform to reconnect missing loved ones using community alerts.",
+      tags: [
+        "Nuxt",
+        "Node.js",
+        "tailwindcss",
+        "Laravel",
+        "Geolocation",
+        "Privacy-First",
+      ],
+      img: "./images/reunite.jpg",
     },
     {
       id: 3,
-      title: "Task Management App",
-      description: "A productivity app for managing daily tasks and projects.",
-      tags: ["React", "Firebase", "Tailwind CSS"],
-    },
-    {
-      id: 4,
-      title: "Weather Application",
-      description: "Real-time weather information with 5-day forecast.",
-      tags: ["JavaScript", "API Integration", "CSS3"],
+      title: "Portfolio Website",
+      description:
+        "A responsive portfolio website for a creative professional.",
+      tags: ["React", "tailwindcss", "Firebase"],
+      img: "./images/portfolio.jpg",
     },
   ];
 
@@ -39,7 +51,7 @@ const Projects = ({ darkMode }) => {
           </span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
           {projects.map((project) => (
             <div
               key={project.id}
