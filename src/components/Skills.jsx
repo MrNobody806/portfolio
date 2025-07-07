@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import {
   SiHtml5,
   SiCss3,
@@ -25,43 +25,58 @@ import {
 import { FaNetworkWired } from "react-icons/fa";
 import { motion } from "framer-motion";
 
+// Constants that won't change
+const ITEM_WIDTH = 120;
+const SCROLL_SPEED = 0.5;
+
 const Skills = ({ darkMode }) => {
-  // All skills combined (duplicated for seamless looping)
-  const allSkills = [
-    { name: "HTML5", icon: <SiHtml5 className="text-orange-500" /> },
-    { name: "CSS3", icon: <SiCss3 className="text-blue-500" /> },
-    { name: "JavaScript", icon: <SiJavascript className="text-yellow-400" /> },
-    { name: "TypeScript", icon: <SiTypescript className="text-blue-600" /> },
-    { name: "React", icon: <SiReact className="text-blue-400" /> },
-    {
-      name: "Next.js",
-      icon: <SiNextdotjs className="text-black dark:text-white" />,
-    },
-    { name: "Vue.js", icon: <SiVuedotjs className="text-green-500" /> },
-    { name: "Nuxt.js", icon: <SiNuxtdotjs className="text-green-400" /> },
-    { name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-400" /> },
-    { name: "Laravel", icon: <SiLaravel className="text-red-500" /> },
-    { name: "Node.js", icon: <SiNodedotjs className="text-green-600" /> },
-    { name: "Express", icon: <SiExpress className="text-gray-500" /> },
-    { name: "REST API", icon: <FaNetworkWired className="text-blue-500" /> },
-    { name: "GraphQL", icon: <SiGraphql className="text-pink-600" /> },
-    { name: "Firebase", icon: <SiFirebase className="text-yellow-500" /> },
-    { name: "PHP", icon: <SiPhp className="text-purple-500" /> },
-    { name: "MySQL", icon: <SiMysql className="text-blue-600" /> },
-    { name: "Git", icon: <SiGit className="text-orange-600" /> },
-    { name: "Docker", icon: <SiDocker className="text-blue-400" /> },
-    { name: "Figma", icon: <SiFigma className="text-purple-600" /> },
-    { name: "Redux", icon: <SiRedux className="text-purple-500" /> },
-    { name: "SEO", icon: <SiGoogle className="text-blue-500" /> },
-  ];
+  // All skills combined (memoized to prevent unnecessary recalculations)
+  const allSkills = useMemo(
+    () => [
+      { name: "HTML5", icon: <SiHtml5 className="text-orange-500" /> },
+      { name: "CSS3", icon: <SiCss3 className="text-blue-500" /> },
+      {
+        name: "JavaScript",
+        icon: <SiJavascript className="text-yellow-400" />,
+      },
+      { name: "TypeScript", icon: <SiTypescript className="text-blue-600" /> },
+      { name: "React", icon: <SiReact className="text-blue-400" /> },
+      {
+        name: "Next.js",
+        icon: <SiNextdotjs className="text-black dark:text-white" />,
+      },
+      { name: "Vue.js", icon: <SiVuedotjs className="text-green-500" /> },
+      { name: "Nuxt.js", icon: <SiNuxtdotjs className="text-green-400" /> },
+      {
+        name: "Tailwind CSS",
+        icon: <SiTailwindcss className="text-cyan-400" />,
+      },
+      { name: "Laravel", icon: <SiLaravel className="text-red-500" /> },
+      { name: "Node.js", icon: <SiNodedotjs className="text-green-600" /> },
+      { name: "Express", icon: <SiExpress className="text-gray-500" /> },
+      { name: "REST API", icon: <FaNetworkWired className="text-blue-500" /> },
+      { name: "GraphQL", icon: <SiGraphql className="text-pink-600" /> },
+      { name: "Firebase", icon: <SiFirebase className="text-yellow-500" /> },
+      { name: "PHP", icon: <SiPhp className="text-purple-500" /> },
+      { name: "MySQL", icon: <SiMysql className="text-blue-600" /> },
+      { name: "Git", icon: <SiGit className="text-orange-600" /> },
+      { name: "Docker", icon: <SiDocker className="text-blue-400" /> },
+      { name: "Figma", icon: <SiFigma className="text-purple-600" /> },
+      { name: "Redux", icon: <SiRedux className="text-purple-500" /> },
+      { name: "SEO", icon: <SiGoogle className="text-blue-500" /> },
+    ],
+    []
+  );
 
   // Duplicate items for seamless looping
-  const duplicatedSkills = [...allSkills, ...allSkills, ...allSkills];
+  const duplicatedSkills = useMemo(
+    () => [...allSkills, ...allSkills, ...allSkills],
+    [allSkills]
+  );
+
   const [scrollX, setScrollX] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const containerRef = useRef(null);
-  const itemWidth = 120; // Width of each skill item
-  const scrollSpeed = 0.5; // Adjust scroll speed
 
   useEffect(() => {
     let animationId;
@@ -69,14 +84,13 @@ const Skills = ({ darkMode }) => {
 
     const animate = (timestamp) => {
       if (!lastTimestamp) lastTimestamp = timestamp;
-      const delta = timestamp - lastTimestamp;
       lastTimestamp = timestamp;
 
       setScrollX((prev) => {
-        const newScroll = prev + scrollSpeed;
+        const newScroll = prev + SCROLL_SPEED;
         // Reset to middle section when reaching the end for infinite loop
-        if (newScroll >= allSkills.length * itemWidth) {
-          return itemWidth;
+        if (newScroll >= allSkills.length * ITEM_WIDTH) {
+          return ITEM_WIDTH;
         }
         return newScroll;
       });
@@ -86,7 +100,7 @@ const Skills = ({ darkMode }) => {
 
     animationId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationId);
-  }, []);
+  }, [allSkills.length]);
 
   return (
     <section id="skills" className="py-20">
@@ -124,7 +138,7 @@ const Skills = ({ darkMode }) => {
               className="absolute flex items-center h-full"
               style={{
                 x: -scrollX,
-                width: `${duplicatedSkills.length * itemWidth}px`,
+                width: `${duplicatedSkills.length * ITEM_WIDTH}px`,
               }}
             >
               {duplicatedSkills.map((skill, index) => (
