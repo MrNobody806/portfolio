@@ -37,7 +37,7 @@ const Projects = ({ darkMode }) => {
       description:
         "A responsive portfolio website for a creative professional.",
       tags: ["React", "tailwindcss", "Firebase"],
-      img: "./images/portfolio.jpg",
+      img: "./images/portfolio.png",
     },
   ];
 
