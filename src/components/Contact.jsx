@@ -38,7 +38,10 @@ const Contact = ({ darkMode }) => {
                 <div>
                   <h4 className="font-medium">Phone</h4>
                   <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
-                    +251-9-431-7302
+                    +251-9-4311-7302
+                  </p>
+                  <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
+                    +251-9-0764-6946
                   </p>
                 </div>
               </div>

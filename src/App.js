@@ -21,7 +21,7 @@ function App() {
     >
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4">
         <Hero darkMode={darkMode} />
         <About darkMode={darkMode} />
         <Skills darkMode={darkMode} />
