@@ -65,7 +65,11 @@ const Hero = ({ darkMode }) => {
             {/* Placeholder for profile image */}
             <div className="text-4xl font-bold">
               <span className={darkMode ? "text-blue-400" : "text-blue-600"}>
-                SS
+                <img
+                  src="/images/manu3.jpg"
+                  alt="MW"
+                  className="w-full h-full object-cover"
+                />
               </span>
             </div>
           </div>

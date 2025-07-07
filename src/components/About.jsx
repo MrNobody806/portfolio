@@ -18,17 +18,15 @@ const About = ({ darkMode }) => {
             >
               {/* Placeholder for about image */}
               <div
-                className={`h-64 ${
+                className={`h-96 ${
                   darkMode ? "bg-gray-700" : "bg-gray-200"
                 } flex items-center justify-center`}
               >
-                <p
-                  className={`text-lg ${
-                    darkMode ? "text-gray-300" : "text-gray-600"
-                  }`}
-                >
-                  About Me Image
-                </p>
+                <img
+                  src="/images/manu23.jpg"
+                  alt="MW"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>

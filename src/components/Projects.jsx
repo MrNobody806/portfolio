@@ -14,7 +14,7 @@ const Projects = ({ darkMode }) => {
         "Payment Integration",
         "Background Checks",
       ],
-      img: "./images/maid.jpg",
+      img: "./images/maid.png",
     },
     {
       id: 2,
@@ -29,7 +29,7 @@ const Projects = ({ darkMode }) => {
         "Geolocation",
         "Privacy-First",
       ],
-      img: "./images/reunite.jpg",
+      img: "./images/reunite.png",
     },
     {
       id: 3,
@@ -59,18 +59,12 @@ const Projects = ({ darkMode }) => {
                 darkMode ? "bg-gray-800" : "bg-white"
               }`}
             >
-              <div
-                className={`h-48 ${
-                  darkMode ? "bg-gray-700" : "bg-gray-200"
-                } flex items-center justify-center`}
-              >
-                <p
-                  className={`text-lg ${
-                    darkMode ? "text-gray-300" : "text-gray-600"
-                  }`}
-                >
-                  Project {project.id}
-                </p>
+              <div className="h-48 overflow-hidden">
+                <img
+                  src={project.img}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
