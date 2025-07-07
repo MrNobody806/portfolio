@@ -1,4 +1,39 @@
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+
 const Contact = ({ darkMode }) => {
+  const form = useRef();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    emailjs
+      .sendForm(
+        "service_q0yr1v7", // Replace with your EmailJS service ID
+        "template_7unztw3", // Replace with your EmailJS template ID
+        form.current,
+        "5tUl2zy8LLwR5Qs1v" // Replace with your EmailJS public key
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setSubmitStatus("success");
+          form.current.reset();
+        },
+        (error) => {
+          console.log(error.text);
+          setSubmitStatus("error");
+        }
+      )
+      .finally(() => {
+        setIsSubmitting(false);
+      });
+  };
+
   return (
     <section id="contact" className="py-20">
       <div className="container mx-auto px-4">
@@ -38,10 +73,7 @@ const Contact = ({ darkMode }) => {
                 <div>
                   <h4 className="font-medium">Phone</h4>
                   <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
-                    +251-9-4311-7302
-                  </p>
-                  <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
-                    +251-9-0764-6946
+                    +251-9-431-7302
                   </p>
                 </div>
               </div>
@@ -115,7 +147,7 @@ const Contact = ({ darkMode }) => {
           <div className="md:w-1/2">
             <h3 className="text-2xl font-semibold mb-6">Send Me a Message</h3>
 
-            <form className="space-y-6">
+            <form ref={form} onSubmit={sendEmail} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label
@@ -129,12 +161,14 @@ const Contact = ({ darkMode }) => {
                   <input
                     type="text"
                     id="name"
+                    name="user_name"
                     className={`w-full px-4 py-3 rounded-lg border ${
                       darkMode
                         ? "bg-gray-800 border-gray-700"
                         : "bg-white border-gray-300"
                     } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     placeholder="Enter your name"
+                    required
                   />
                 </div>
                 <div>
@@ -149,12 +183,14 @@ const Contact = ({ darkMode }) => {
                   <input
                     type="email"
                     id="email"
+                    name="user_email"
                     className={`w-full px-4 py-3 rounded-lg border ${
                       darkMode
                         ? "bg-gray-800 border-gray-700"
                         : "bg-white border-gray-300"
                     } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     placeholder="Enter your email"
+                    required
                   />
                 </div>
               </div>
@@ -171,12 +207,14 @@ const Contact = ({ darkMode }) => {
                 <input
                   type="text"
                   id="subject"
+                  name="subject"
                   className={`w-full px-4 py-3 rounded-lg border ${
                     darkMode
                       ? "bg-gray-800 border-gray-700"
                       : "bg-white border-gray-300"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                   placeholder="Enter subject"
+                  required
                 />
               </div>
 
@@ -191,6 +229,7 @@ const Contact = ({ darkMode }) => {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows="5"
                   className={`w-full px-4 py-3 rounded-lg border ${
                     darkMode
@@ -198,19 +237,46 @@ const Contact = ({ darkMode }) => {
                       : "bg-white border-gray-300"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                   placeholder="Enter your message"
+                  required
                 ></textarea>
               </div>
 
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className={`px-8 py-3 rounded-lg font-medium ${
                   darkMode
                     ? "bg-blue-600 hover:bg-blue-700"
                     : "bg-blue-500 hover:bg-blue-600"
-                } text-white transition-colors`}
+                } text-white transition-colors disabled:opacity-70`}
               >
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
+
+              {submitStatus === "success" && (
+                <div
+                  className={`p-4 rounded-lg ${
+                    darkMode
+                      ? "bg-green-900 text-green-200"
+                      : "bg-green-100 text-green-800"
+                  }`}
+                >
+                  Message sent successfully! I'll get back to you soon.
+                </div>
+              )}
+
+              {submitStatus === "error" && (
+                <div
+                  className={`p-4 rounded-lg ${
+                    darkMode
+                      ? "bg-red-900 text-red-200"
+                      : "bg-red-100 text-red-800"
+                  }`}
+                >
+                  Failed to send message. Please try again later or contact me
+                  directly at manuye03@gmail.com.
+                </div>
+              )}
             </form>
           </div>
         </div>
