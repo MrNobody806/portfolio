@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
+import { saveAs } from "file-saver";
 
 const Hero = ({ darkMode }) => {
+  const handlecvdownload = () => {
+    const cvPath = "./CV.pdf";
+    saveAs(cvPath, "Manuhe_Wolde_CV.pdf");
+  };
   return (
     <section
       id="home"
@@ -31,6 +36,7 @@ const Hero = ({ darkMode }) => {
           </p>
           <div className="flex space-x-4">
             <button
+              onClick={handlecvdownload}
               className={`px-6 py-3 rounded-lg font-medium ${
                 darkMode
                   ? "bg-blue-600 hover:bg-blue-700"
