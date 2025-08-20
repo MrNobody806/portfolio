@@ -107,6 +107,9 @@ const Contact = ({ darkMode }) => {
                   <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
                     manuye03@gmail.com
                   </p>
+                  <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
+                    manuhe839@gmail.com
+                  </p>
                 </div>
               </div>
 
