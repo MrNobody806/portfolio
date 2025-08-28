@@ -73,45 +73,6 @@ const About = ({ darkMode }) => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div>
-                <p className="font-medium">Name:</p>
-                <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
-                  Manuhe Wolde Gebreyohannis
-                </p>
-              </div>
-              <div>
-                <p className="font-medium">Date of birth:</p>
-                <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
-                  October 24, 2001
-                </p>
-              </div>
-              <div>
-                <p className="font-medium">Location:</p>
-                <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
-                  Addis Ababa, Ethiopia
-                </p>
-              </div>
-              <div>
-                <p className="font-medium">Education:</p>
-                <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
-                  B.Sc. in Software Engineering
-                </p>
-              </div>
-              <div>
-                <p className="font-medium">Email:</p>
-                <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
-                  manuhe839@gmail.com
-                </p>
-              </div>
-              <div>
-                <p className="font-medium">Phone:</p>
-                <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
-                  +251-9-4311-7302
-                </p>
-              </div>
-            </div>
-
             <div
               className={`p-6 rounded-lg ${
                 darkMode ? "bg-gray-800" : "bg-blue-50"
