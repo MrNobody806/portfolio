@@ -51,7 +51,7 @@ const Header = ({ darkMode, toggleDarkMode }) => {
           className="text-2xl font-bold"
         >
           <span className={darkMode ? "text-blue-400" : "text-blue-600"}>
-            Manu
+            Manuhe Wolde
           </span>
         </motion.div>
 
