@@ -6,6 +6,14 @@ const Hero = ({ darkMode }) => {
     const cvPath = "./Manuhe_wolde.pdf";
     saveAs(cvPath, "Manuhe_Wolde_CV.pdf");
   };
+
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="home"
@@ -46,6 +54,7 @@ const Hero = ({ darkMode }) => {
               Download CV
             </button>
             <button
+              onClick={scrollToContact}
               className={`px-6 py-3 rounded-lg font-medium ${
                 darkMode
                   ? "bg-gray-700 hover:bg-gray-600"
