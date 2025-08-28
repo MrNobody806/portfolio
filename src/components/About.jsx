@@ -3,7 +3,7 @@ import { saveAs } from "file-saver";
 const About = ({ darkMode }) => {
   const handleDownloadCV = () => {
     // Replace with the actual path to your CV file
-    const cvPath = "./CV.pdf";
+    const cvPath = "./Manuhe_wolde.pdf";
     saveAs(cvPath, "Manuhe_Wolde_CV.pdf");
   };
 
@@ -101,7 +101,7 @@ const About = ({ darkMode }) => {
               <div>
                 <p className="font-medium">Email:</p>
                 <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
-                  manuye03@gmail.com
+                  manuhe839@gmail.com
                 </p>
               </div>
               <div>
