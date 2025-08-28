@@ -3,7 +3,7 @@ import { saveAs } from "file-saver";
 
 const Hero = ({ darkMode }) => {
   const handlecvdownload = () => {
-    const cvPath = "./CV.pdf";
+    const cvPath = "./Manuhe_wolde.pdf";
     saveAs(cvPath, "Manuhe_Wolde_CV.pdf");
   };
   return (
